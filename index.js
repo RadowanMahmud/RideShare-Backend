@@ -15,6 +15,8 @@ app.use(express.json())
 
 const driverrouter = require('./routers/driver')
 app.use('/driver',driverrouter)
+const riderrouter = require('./routers/rider')
+app.use('/rider',riderrouter)
 
 
 app.listen(9000, () => {
