@@ -5,8 +5,27 @@ let socket = io.connect('http://localhost:9000/communication')
 
 const search = {
     id: '',
-    positionX: Math.random(),
-    positionY: Math.random(),
+    positionX: 0,
+    positionY: 0,
+}
+
+const driverSearch = {
+    hostname: 'localhost',
+    port: 9000,
+    path: '/driver',
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    }
+}
+const riderSearch = {
+    hostname: 'localhost',
+    port: 9000,
+    path: '/rider',
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    }
 }
 
 const fetchAllDrivers = {
@@ -47,8 +66,41 @@ const reqRider = http.request(fetchAllRiders, res => {
 reqRider.end()
 
 function call(){
-    console.log(drivers.length)
-    console.log(riders.length)
+    driversearchfunction()
+    ridersearchfunction()
+}
+
+function driversearchfunction(){
+    drivers.forEach((driver)=>{
+        search.id = driver._id
+        search.positionX = Math.random() * 100
+        search.positionY = Math.random() * 100
+        const req = http.request(driverSearch, res => {
+            // console.log(`statusCode: ${res.statusCode} `)
+        })
+        req.write(JSON.stringify(search))
+        req.end()
+        console.log(driver.name +" is seraching for a RIDER from postion "+ search.positionX+" "+search.positionY )
+        search.id = ''
+        search.positionX = 0
+        search.positionY = 0
+    })
+}
+function ridersearchfunction(){
+    riders.forEach((rider)=>{
+        search.id = rider._id
+        search.positionX = Math.random() * 100
+        search.positionY = Math.random() * 100
+        const req = http.request(riderSearch, res => {
+            // console.log(`statusCode: ${res.statusCode} `)
+        })
+        req.write(JSON.stringify(search))
+        req.end()
+        console.log(rider.name +" is seraching for a RIDER from postion "+ search.positionX+" "+search.positionY )
+        search.id = ''
+        search.positionX = 0
+        search.positionY = 0
+    })
 }
 
 if(chkdriver && chkrider){

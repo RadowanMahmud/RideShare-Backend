@@ -17,7 +17,12 @@ const riderSchema = new mongoose.Schema({
     rating:{
         type:Number,
         required: false
-    }
+    },
+    status:{
+        type: Boolean,
+        required:true,
+        default: true
+    },
 
 })
 

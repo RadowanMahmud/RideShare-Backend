@@ -9,7 +9,7 @@ const io = require('socket.io')(http)
 
 io.of('communication').on('connection', (socket)=>{
     console.log("new user connected")
-    const job = sch.scheduleJob('*/5 * * * * *', function(){
+    const job = sch.scheduleJob('*/10 * * * * *', function(){
          getDist(socket)
     });
 })

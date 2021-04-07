@@ -35,7 +35,7 @@ router.post('/',async (req, res) => {
         driver.positionY = req.body.positionY
         driver.status = false
         const result = await driver.save()
-        res.send('ok')
+        res.send( result)
     }catch (err){
         res.send('Error' + err)
     }
