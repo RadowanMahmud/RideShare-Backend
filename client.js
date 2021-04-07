@@ -3,40 +3,58 @@ const http = require('http')
 
 let socket = io.connect('http://localhost:9001/communication')
 
-const driver = JSON.stringify({
-    name: 'a',
-    car: 'toyota',
-    positionX: 0,
-    positionY: 0,
-    status: false,
-    rating: 5,
-})
+const search = {
+    id: '',
+    positionX: Math.random(),
+    positionY: Math.random(),
+}
 
-const options = {
+const fetchAllDrivers = {
     hostname: 'localhost',
     port: 9000,
     path: '/info/driver',
     method: 'Get',
-    // headers: {
-    //     'Content-Type': 'application/json',
-    //     'Content-Length': driver.length
-    // }
+}
+const fetchAllRiders = {
+    hostname: 'localhost',
+    port: 9000,
+    path: '/info/rider',
+    method: 'Get',
 }
 
-const req = http.request(options, res => {
-    console.log(`statusCode: ${res.statusCode}`)
+let drivers = []
+let riders = []
+let chkdriver = false
+let chkrider = false
 
+const reqDriver = http.request(fetchAllDrivers, res => {
+    console.log(`statusCode: ${res.statusCode} \n`)
     res.on('data', d => {
-        process.stdout.write(d)
+        drivers = JSON.parse(d)
     })
 })
+reqDriver.end()
 
-req.on('error', error => {
-    console.error(error)
+const reqRider = http.request(fetchAllDrivers, res => {
+    console.log(`statusCode: ${res.statusCode} \n`)
+    res.on('data', d => {
+        riders = JSON.parse(d)
+        if(drivers.length > 0){
+            call()
+        }
+    })
 })
+reqRider.end()
 
-//req.write(data)
-req.end()
+function call(){
+    console.log(drivers.length)
+    console.log(riders.length)
+}
+
+if(chkdriver && chkrider){
+    console.log("we are good to go")
+}
+
 
 socket.on('welcome',(data)=>{
     console.log(data)
