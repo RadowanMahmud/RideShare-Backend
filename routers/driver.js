@@ -20,7 +20,7 @@ router.post('/add', async (req,res) => {
         rating: req.body.rating,
     })
     try{
-        console.log(req)
+        //console.log(req)
         const  result = await driver.save()
         res.json(result)
     }catch (err){
@@ -28,4 +28,16 @@ router.post('/add', async (req,res) => {
     }
 })
 
+router.post('/',async (req, res) => {
+    try{
+        const driver = await Driver.findById(req.body.id)
+        driver.positionX = req.body.positionX
+        driver.positionY = req.body.positionY
+        driver.status = false
+        const result = await driver.save()
+        res.send('ok')
+    }catch (err){
+        res.send('Error' + err)
+    }
+})
 module.exports = router

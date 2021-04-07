@@ -26,4 +26,17 @@ router.post('/add', async (req,res) => {
     }
 })
 
+router.post('/',async (req, res) => {
+    try{
+        const rider = await Rider.findById(req.body.id)
+        rider.positionX = req.body.positionX
+        rider.positionY = req.body.positionY
+        rider.status = false
+        const result = await rider.save()
+        res.send('ok')
+    }catch (err){
+        res.send('Error' + err)
+    }
+})
+
 module.exports = router
