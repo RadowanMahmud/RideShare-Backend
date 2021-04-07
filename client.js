@@ -1,7 +1,7 @@
 const io = require('socket.io-client')
 const http = require('http')
 
-let socket = io.connect('http://localhost:9001/communication')
+let socket = io.connect('http://localhost:9000/communication')
 
 const search = {
     id: '',
