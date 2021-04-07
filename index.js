@@ -6,11 +6,8 @@ const url = 'mongodb://localhost/MyExpressDatas'
 
 const io = require('socket.io')(http)
 
-io.on('connection', (socket)=>{
+io.of('communication').on('connection', (socket)=>{
     console.log("new user connected")
-    // cron.schedule('5 * * * *', function() {
-    //     socket.emit("welcome","User is connected")
-    // });
     const job = sch.scheduleJob('*/5 * * * * *', function(){
         socket.emit("welcome","User is connected")
     });
