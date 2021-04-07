@@ -12,13 +12,13 @@ const search = {
 const fetchAllDrivers = {
     hostname: 'localhost',
     port: 9000,
-    path: '/info/driver',
+    path: '/driver/fetch',
     method: 'Get',
 }
 const fetchAllRiders = {
     hostname: 'localhost',
     port: 9000,
-    path: '/info/rider',
+    path: '/rider/fetch',
     method: 'Get',
 }
 
@@ -35,7 +35,7 @@ const reqDriver = http.request(fetchAllDrivers, res => {
 })
 reqDriver.end()
 
-const reqRider = http.request(fetchAllDrivers, res => {
+const reqRider = http.request(fetchAllRiders, res => {
     console.log(`statusCode: ${res.statusCode} \n`)
     res.on('data', d => {
         riders = JSON.parse(d)

@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Driver = require('../models/Driver')
 
-router.get('/', async (req,res) => {
+router.get('/fetch', async (req,res) => {
     try{
         const drivers = await Driver.find()
         res.json(drivers)
@@ -11,7 +11,7 @@ router.get('/', async (req,res) => {
     }
 })
 
-router.post('/', async (req,res) => {
+router.post('/add', async (req,res) => {
     const driver = new Driver({
         name: req.body.name,
         car: req.body.car,

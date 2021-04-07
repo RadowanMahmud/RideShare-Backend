@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Rider = require('../models/Rider')
 
-router.get('/', async (req,res) => {
+router.get('/fetch', async (req,res) => {
     try{
         const riders = await Rider.find()
         res.json(riders)
@@ -11,7 +11,7 @@ router.get('/', async (req,res) => {
     }
 })
 
-router.post('/', async (req,res) => {
+router.post('/add', async (req,res) => {
     const rider = new Rider({
         name: req.body.name,
         positionX: req.body.positionX,

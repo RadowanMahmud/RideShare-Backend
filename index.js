@@ -25,9 +25,9 @@ con.on('open',function (){
 app.use(express.json())
 
 const driverrouter = require('./routers/driver')
-app.use('/info/driver',driverrouter)
+app.use('/driver',driverrouter)
 const riderrouter = require('./routers/rider')
-app.use('/info/rider',riderrouter)
+app.use('/rider',riderrouter)
 
 http.listen(9001,()=>{
     console.log('socket  opened at port 9001');
