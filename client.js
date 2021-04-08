@@ -110,5 +110,7 @@ if(chkdriver && chkrider){
 
 socket.on('welcome',(data)=>{
     console.log('\n')
-    console.log(data)
+    let str = data.split('#')
+    console.log(str[0])
+    console.log(str[1])
 })

@@ -31,7 +31,7 @@ io.of('communication').on('connection', (socket)=>{
              selectedrider.status = true
              const r1 = await selectedrider.save()
 
-             socket.emit("welcome", d.name +' has been matched with '+ selectedrider.name + 'and the fiar is ' + mindist*2)
+             socket.emit("welcome", d.name +' has been matched with '+ selectedrider.name + ' and the fiar is ' + mindist*2 +' #'+ d._id)
              await getDist()
              console.log('\n'+drivers.length)
              console.log(riders.length)
