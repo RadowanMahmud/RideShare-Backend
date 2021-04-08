@@ -109,5 +109,6 @@ if(chkdriver && chkrider){
 
 
 socket.on('welcome',(data)=>{
+    console.log('\n')
     console.log(data)
 })
