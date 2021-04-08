@@ -50,8 +50,13 @@ let drivers = [];
 let riders = [];
 
 async function getDist(){
-    drivers = await Driver.find({status : false})
-    riders = await Rider.find({status : false})
+    try{
+        drivers = await Driver.find({status : false})
+        riders = await Rider.find({status : false})
+    }catch (err){
+        console.log(err)
+    }
+
 }
 
 app.use(express.json())
@@ -60,6 +65,18 @@ const driverrouter = require('./routers/driver')
 app.use('/driver',driverrouter)
 const riderrouter = require('./routers/rider')
 app.use('/rider',riderrouter)
+
+app.post('/rating',async (req,res)=>{
+    try{
+        const driver = await Driver.findById(req.body.id)
+        console.log(driver)
+        driver.rating = (driver.rating+req.body.points)/2
+        const result = await driver.save()
+        res.send('ok')
+    }catch (err){
+        res.send(err)
+    }
+})
 
 http.listen(9000,()=>{
     console.log('socket and server  opened at port 9000');

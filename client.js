@@ -109,14 +109,33 @@ function ridersearchfunction(){
     })
 }
 
-if(chkdriver && chkrider){
-    console.log("we are good to go")
-}
-
 
 socket.on('welcome',(data)=>{
     console.log('\n')
     let str = data.split('#')
     console.log(str[0])
-    console.log(str[1])
+    giverating(str[1])
 })
+const saveRating = {
+    hostname: 'localhost',
+    port: 9000,
+    path: '/rating',
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    }
+}
+
+const rating = {
+    id: '',
+    points: 5,
+}
+function giverating(id){
+    rating.id = id
+    const req = http.request(saveRating, res => {
+         console.log(`Ratingg giving statusCode: ${res.statusCode} `)
+    })
+    req.write(JSON.stringify(rating))
+    req.end()
+    rating.id = ''
+}
