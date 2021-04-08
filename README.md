@@ -15,8 +15,9 @@ Technologies used
 * node-schedule
 * http
 
-#Commands for running
+# Commands for running
 
-'npm run start' for running the server '\n'
+'npm run start' for running the server 
+
 'node client.js' for running the client
 
