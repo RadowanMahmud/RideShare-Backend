@@ -69,7 +69,6 @@ app.use('/rider',riderrouter)
 app.post('/rating',async (req,res)=>{
     try{
         const driver = await Driver.findById(req.body.id)
-        console.log(driver)
         driver.rating = (driver.rating+req.body.points)/2
         const result = await driver.save()
         res.send('ok')
@@ -79,7 +78,8 @@ app.post('/rating',async (req,res)=>{
 })
 
 http.listen(9000,()=>{
-    console.log('socket and server  opened at port 9000');
+    console.log('socket opened at port 9000')
+    console.log('server opened at port 9000')
 })
 // app.listen(9000, () => {
 //     console.log('server opened at port number 9000')
