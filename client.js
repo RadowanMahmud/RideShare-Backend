@@ -1,5 +1,6 @@
 const io = require('socket.io-client')
 const http = require('http')
+const sch = require('node-schedule')
 
 let socket = io.connect('http://localhost:9000/communication')
 
@@ -59,6 +60,8 @@ const reqRider = http.request(fetchAllRiders, res => {
     res.on('data', d => {
         riders = JSON.parse(d)
         if(drivers.length > 0){
+            driversearchfunction()
+            ridersearchfunction()
             call()
         }
     })
@@ -66,8 +69,11 @@ const reqRider = http.request(fetchAllRiders, res => {
 reqRider.end()
 
 function call(){
-    driversearchfunction()
-    ridersearchfunction()
+    const job = sch.scheduleJob('*/6 * * * * *', async function(){
+        console.log('\n')
+        driversearchfunction()
+        ridersearchfunction()
+    })
 }
 
 function driversearchfunction(){
