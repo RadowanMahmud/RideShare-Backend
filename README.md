@@ -1,5 +1,7 @@
 # RideShare-Backend
 
+A simple app for implementing a basic situation of a ride share app.
+
 This App is using express js  as backend. 
 There is a file called client.js which is acting as our client bot. The client bot sends requests to the server and the server checks the db after every 5 sec and matches 
 a rider with driver and emmits the changes through socket.
@@ -13,8 +15,8 @@ Technologies used
 * node-schedule
 * http
 
-Commands for running
+#Commands for running
 
-'npm run start' for running the server
+'npm run start' for running the server '\n'
 'node client.js' for running the client
 
