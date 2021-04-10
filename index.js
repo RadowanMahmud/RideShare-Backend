@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
+const cors = require('cors')
 const http = require('http').createServer(app)
 const sch = require('node-schedule')
 const url = 'mongodb://localhost/MyExpressDatas'
@@ -9,6 +10,7 @@ const Rider = require('./models/Rider')
 
 const io = require('socket.io')(http)
 
+app.use(cors())
 
 io.of('communication').on('connection', (socket)=>{
     console.log("new user connected")
