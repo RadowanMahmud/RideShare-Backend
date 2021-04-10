@@ -13,8 +13,8 @@ router.get('/fetch', async (req,res) => {
 
 router.post('/delete', async (req,res) => {
     try{
-        const drivers = await Driver.deleteOne({ _id: req.body.id})
-        res.json(drivers)
+        const riders = await Rider.deleteOne({ _id: req.body.id})
+        res.json(riders)
     }catch (err){
         res.send('Error' + err)
     }
