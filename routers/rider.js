@@ -11,6 +11,15 @@ router.get('/fetch', async (req,res) => {
     }
 })
 
+router.post('/delete', async (req,res) => {
+    try{
+        const drivers = await Driver.deleteOne({ _id: req.body.id})
+        res.json(drivers)
+    }catch (err){
+        res.send('Error' + err)
+    }
+})
+
 router.post('/add', async (req,res) => {
     const rider = new Rider({
         name: req.body.name,
